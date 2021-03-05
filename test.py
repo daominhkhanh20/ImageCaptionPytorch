@@ -38,7 +38,7 @@ model=CNN2RNN(embedding_size,hidden_size,vocab_size,num_layers)
 model.load_state_dict(state_dict['state_dict'])
 model.eval()
 
-if args.image is not None:
+if args.image is None:
     data_test=torch.load('test_set.pth')
 
 def preprocessing():
