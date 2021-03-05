@@ -128,11 +128,11 @@ def train():
     for epoch in range(1,epochs+1):
         model.train()
         for idx,(images,captions) in enumerate(train_set):
+            optimizer.zero_grad()
             imgs=images.to(device)
             captions=captions.to(device)
             outputs=model(imgs,captions[:-1])#shape seq_length*batch_size*vocab_size
             loss=criterion(outputs.reshape(-1,outputs.shape[2]),captions.reshape(-1))
-            optimizer.zero_grad()
             loss.backward(loss)
             optimizer.step()
         
